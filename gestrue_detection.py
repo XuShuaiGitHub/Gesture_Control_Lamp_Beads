@@ -91,12 +91,10 @@ while cap.isOpened():
                 palm_x = palm_center[0]  # 手掌中心x坐标（范围0~1，左侧x小，右侧x大）
                 color_step = 0.1  # 切换颜色的x阈值（值越小越灵敏）
                 if palm_x > 0.5 + color_step:  # 右滑超过阈值
-                    # current_color_idx = (current_color_idx + 1) % len(COLORS)
-                    current_color_idx = 3
+                    current_color_idx = (current_color_idx + 1) % len(COLORS)
                     time.sleep(0.3)  # 防抖
                 elif palm_x < 0.5 - color_step:  # 左滑超过阈值
-                    # current_color_idx = (current_color_idx - 1) % len(COLORS)
-                    current_color_idx = 4
+                    current_color_idx = (current_color_idx - 1) % len(COLORS)
                     time.sleep(0.3)  # 防抖
 
             # ========== 4. 组合颜色+亮度 → 生成RGB指令 ==========
@@ -139,15 +137,15 @@ while cap.isOpened():
                 (255, 255, 255),
                 2,
             )
-            # cv2.putText(
-            #     canvas,
-            #     f"palm_x: {palm_x:.2f}",
-            #     (10, 120),
-            #     cv2.FONT_HERSHEY_SIMPLEX,
-            #     0.7,
-            #     (255, 255, 255),
-            #     2,
-            # )
+            cv2.putText(
+                canvas,
+                f"palm_x: {palm_x:.2f}",
+                (10, 120),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (255, 255, 255),
+                2,
+            )
             cv2.putText(
                 canvas,
                 f"fist_dist: {fist_dist:.2f} < 0.2",
